@@ -1,5 +1,25 @@
+==============================================================================
+  UNVERIFIED — NOT REVIEWED BY ANY NATIVE SPEAKER OF THIS LANGUAGE.
+
+  This file is MACHINE-GENERATED sample output. No fluent or first-language
+  speaker has checked it. Assume it contains errors in grammar, orthography,
+  idiom, and meaning — possibly severe ones, possibly on every line.
+
+  DO NOT use it to learn, teach, or represent this language.
+  DO NOT ship it into a production training corpus as-is.
+  DO NOT cite it as a language resource.
+  DO NOT present it to anyone as correct Yoeme.
+
+  It demonstrates a GENERATION METHOD and nothing else. Verification by the
+  language's own speakers is the actual work, and it has NOT been done.
+
+  Authority over this language belongs to its community, not to this file or
+  its authors. See ../standards/ULAS_Unity_Covenant_Governance_Integration.md
+==============================================================================
+
 DATASET BATCH ID: TRN-2026-ALPHA-09
-INTEGRITY CHECK: PASS
+FORMAT INTEGRITY CHECK: PASS  (file structure only — NOT a language check)
+LINGUISTIC VERIFICATION: NONE  (see banner above)
 PURPOSE: DEMONSTRATION OF CORE TRAINING DATA ARCHETYPES
 LANGUAGE: Yoeme (Pascua Yaqui)
 
