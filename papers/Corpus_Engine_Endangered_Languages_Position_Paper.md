@@ -317,5 +317,6 @@ The question is whether we fuel it in time.
 
 ────────────────────────────────────────
 
-© Jimmy Thornburg LLC / The Fort That Holds LLC
 January 2026
+
+Released under CC0 1.0 Universal — public domain dedication. No attribution required.

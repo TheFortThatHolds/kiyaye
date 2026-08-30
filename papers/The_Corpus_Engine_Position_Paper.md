@@ -284,6 +284,8 @@ The Corpus Engine is running.
 *Universal Linguistic Accessibility Standards*
 *Document Version 1.0*
 
+*Released under CC0 1.0 Universal — public domain dedication. No attribution required.*
+
 ---
 
 ## Appendix: Today's Demonstration

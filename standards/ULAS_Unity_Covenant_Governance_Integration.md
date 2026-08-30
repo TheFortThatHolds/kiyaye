@@ -150,7 +150,9 @@ We refuse that path.
 Document Status: Active
 Version: 1.0
 Date: January 2026
-Governing Framework: The Unity Covenant (CC BY-SA 4.0)
+Governing Framework: The Unity Covenant
 Technical Framework: ULAS 2.1 + Addendum 2.1.1
 
-Licensed under Creative Commons BY-SA 4.0
+Released under CC0 1.0 Universal (public domain dedication) — no attribution
+required. The waiver covers the authors' copyright in this document only; it
+does not affect community authority over community materials, described above.
