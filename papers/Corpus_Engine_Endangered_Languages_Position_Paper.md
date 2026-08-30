@@ -1,7 +1,6 @@
 THE CORPUS ENGINE AND THE FUTURE OF ENDANGERED LANGUAGES
 A Position Paper on AI Training Data Generation and Linguistic Survival
 
-The Fort That Holds LLC
 January 2026
 
 ────────────────────────────────────────

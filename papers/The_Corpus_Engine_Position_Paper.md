@@ -1,7 +1,7 @@
 # The Corpus Engine
 ## How AI-Assisted Translation Could Resurrect Dying Languages
 
-**A Position Paper by The Fort That Holds LLC**
+**A Position Paper**
 
 ---
 
@@ -280,7 +280,6 @@ The Corpus Engine is running.
 
 ---
 
-*The Fort That Holds LLC*
 *Universal Linguistic Accessibility Standards*
 *Document Version 1.0*
 
