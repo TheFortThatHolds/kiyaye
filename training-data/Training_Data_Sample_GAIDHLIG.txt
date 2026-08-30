@@ -1,0 +1,165 @@
+DATASET BATCH ID: TRN-2026-ALPHA-09
+INTEGRITY CHECK: PASS
+PURPOSE: DEMONSTRATION OF CORE TRAINING DATA ARCHETYPES
+LANGUAGE: Gàidhlig (Scottish Gaelic)
+
+SECTOR 1: SYNTHETIC REASONING & LOGIC (The "Brain" Builder)
+Meta-Tag: source:synthetic_math_logic | quality:platinum | purpose:deductive_reasoning
+
+Ceist Ion-chuir: Tha tanca-uisge le dà shlighe a-steach (Pìob A agus Pìob B) agus aon shlighe a-mach (Pìob C). 'S urrainn do Phìob A an tanca a lìonadh ann an 4 uairean a thìde. 'S urrainn do Phìob B an tanca a lìonadh ann an 6 uairean a thìde. 'S urrainn do Phìob C an tanca làn fhalamhachadh ann an 3 uairean a thìde. Ma thèid na trì pìoban fhosgladh aig an aon àm nuair a tha an tanca falamh, an lìon an tanca gu bràth? Ma lìonas, dè cho fada? Mura lìon, carson?
+
+Toradh Trèanaidh Targaid (Sreath Smuain): <thinking>
+1. Sgrùdaich na rèatan-sruthaidh: Feumaidh sinn an ùine a bheir e gus gnìomh a chrìochnachadh atharrachadh gu rèata obrach gach uair.
+   * Lìonaidh Pìob A 1 tanca ann an 4 uairean. Rèata A = +1/4 tanca gach uair.
+   * Lìonaidh Pìob B 1 tanca ann an 6 uairean. Rèata B = +1/6 tanca gach uair.
+   * Falamhaichidh Pìob C 1 tanca ann an 3 uairean. Leis gu bheil e a' falamhachadh, tha seo na rèata àicheil. Rèata C = -1/3 tanca gach uair.
+2. Àireamhaich an Rèata Sruthaidh Iomlan: Nuair a tha na pìoban gu lèir fosgailte, thèid na rèatan a chur ri chèile.
+   * Rèata Iomlan = Rèata A + Rèata B + Rèata C
+   * Rèata Iomlan = 1/4 + 1/6 - 1/3
+3. Lorg Seòmradair Cumanta: 'S e 4, 6, agus 3 na seòmradairean. Is e 12 an LCM.
+   * Atharraich Rèata A: 1/4 = 3/12
+   * Atharraich Rèata B: 1/6 = 2/12
+   * Atharraich Rèata C: -1/3 = -4/12
+4. Dèan an Cur-ris:
+   * Rèata Iomlan = (3 + 2 - 4) / 12
+   * Rèata Iomlan = 1/12 tanca gach uair.
+5. Mìnich an Toradh:
+   * Leis gu bheil an Rèata Iomlan dearbhach (+1/12), tha ìre an uisge ag èirigh. Lìonaidh an tanca mu dheireadh thall.
+6. Àireamhaich an Ùine gu Lìonadh:
+   * Ùine = Comas Iomlan / Rèata Iomlan
+   * Ùine = 1 / (1/12)
+   * Ùine = 12 uairean.
+7. Dearbhadh Deireannach:
+   * Ann an 12 uairean:
+      * Lìonaidh Pìob A 12 * (1/4) = 3 tancan.
+      * Lìonaidh Pìob B 12 * (1/6) = 2 tancan.
+      * Tràighidh Pìob C 12 * (1/3) = 4 tancan.
+   * Iomlan: 3 + 2 - 4 = 1 tanca. Tha am matamataig ceart.
+</thinking>
+Freagairt Dheireannach: Seadh, lìonaidh an tanca. Bheir e dìreach 12 uairean.
+
+SECTOR 2: CODE & STRUCTURAL SYNTAX (The "Grammar" of Logic)
+Meta-Tag: source:github_stars_high | language:python | purpose:syntax_and_abstraction
+
+Co-theacsa: Chan e dìreach mu phrògramadh a tha trèanadh còd; tha e a' teagasg don mhodail gum feum bracaidean fosglaidh a bhith air an dùnadh, gu bheil eadar-dhealachadh a' ciallachadh rangachd, agus gum feum caochladairean a bhith air am mìneachadh mus tèid an cleachdadh. Tha seo a' seasmhachadh comas a' mhodail gus structaran seantans ioma-fhillte a làimhseachadh ann an cànan nàdarra.
+
+Sampall Dàta:
+import numpy as np
+
+class AttentionMechanism:
+   """
+   A' cur an gnìomh inneal Scaled Dot-Product Attention.
+   Iomradh: "Attention Is All You Need" (Vaswani et al., 2017)
+   """
+   def __init__(self, d_k):
+       # Tha d_k a' riochdachadh meud nan vectoran iuchrach.
+       # Thèid a chleachdadh airson na toraidhean dot a sgèileadh gus casg a chur air gradients a' crìonadh.
+       self.d_k = d_k
+
+   def forward(self, query, key, value, mask=None):
+       """
+       Àireamhaich sgòran aire agus suim chuideamach de luachan.
+       
+       Argamaidean:
+           query (np.array): Cumadh (batch, seq_len, d_k)
+           key (np.array): Cumadh (batch, seq_len, d_k)
+           value (np.array): Cumadh (batch, seq_len, d_v)
+           mask (np.array, roghainneil): Cumadh (batch, seq_len, seq_len). 
+                                         Tha 1 a' ciallachadh masg, tha 0 a' ciallachadh cùm.
+       
+       A' tilleadh:
+           toradh, cuideaman_aire
+       """
+       # 1. MatMul: Àireamhaich sgòran amh (Query x Key^T)
+       # Cuir mun cuairt an dà thomhas mu dheireadh de Key airson iomadachadh
+       scores = np.matmul(query, key.swapaxes(-2, -1))
+       
+       # 2. Sgèile: Roinn le sqrt(d_k)
+       scores = scores / np.sqrt(self.d_k)
+       
+       # 3. Masg: Cuir masg an sàs ma thèid a thoirt seachad (suidhich ionadan masgaichte gu -neo-chrìochnachd)
+       if mask is not None:
+           # Tha sinn a' cleachdadh àireamh àicheil mòr gus -neo-chrìochnachd a shamhlachadh ann an Softmax
+           scores = np.where(mask == 1, -1e9, scores)
+       
+       # 4. Softmax: Àbhaisteach sgòran gu coltasan
+       attention_weights = self._softmax(scores)
+       
+       # 5. MatMul: Suim chuideamach de Luachan
+       output = np.matmul(attention_weights, value)
+       
+       return output, attention_weights
+
+   def _softmax(self, x):
+       """Cur an gnìomh softmax seasmhach gu àireamhach."""
+       e_x = np.exp(x - np.max(x, axis=-1, keepdims=True))
+       return e_x / np.sum(e_x, axis=-1, keepdims=True)
+
+# Còd Draibhear gus cleachdadh a nochdadh
+if __name__ == "__main__":
+   # Samhlaich tomhasan: Batch=1, SeqLen=3, Tomhas=4
+   d_k = 4
+   attn = AttentionMechanism(d_k)
+   
+   Q = np.random.rand(1, 3, d_k)
+   K = np.random.rand(1, 3, d_k)
+   V = np.random.rand(1, 3, d_k)
+   
+   out, weights = attn.forward(Q, K, V)
+   print(f"Cumadh Toraidh: {out.shape}")
+   print("Àireamhachadh aire crìochnaichte.")
+
+SECTOR 3: HIGH-DENSITY FACTUALITY (The "Knowledge Base")
+Meta-Tag: source:textbook_synthesis | domain:material_science | purpose:world_knowledge
+
+Co-theacsa: Tha an dàta seo a' teagasg fìrinnean don mhodail. Tha e tiugh, gun sgudal, agus làn cheanglaichean. Tha e a' ceangal bun-bheachd A (Stàilinn) ri bun-bheachd B (susbaint guail) ri bun-bheachd C (làimhseachadh teasa).
+
+Sampall Dàta:
+Co-chothromachadh Iarann-Guail & Làimhseachadh Teasa Stàilinn
+
+Tha stàilinn gu prìomhach na coimeasgachadh de dh'iarann (Fe) agus gual (C), mar as trice le eadar 0.002% agus 2.1% gual a rèir cuideam. Tha feartan meacanaigeach stàilinn air an dearbhadh le a meanbh-structar, a ghabhas atharrachadh tro phròiseasan làimhseachadh teasa leithid annealing, normalizing, quenching, agus tempering.
+
+1. Na h-Ìrean de Stàilinn:
+   * Ferite (α-iarann): Structar criostal BCC. Tha e bog, sùbailte, agus magnetach aig teòthachd seòmair. Tha e a' sgaoileadh glè bheag guail (0.022% aig a' char as àirde aig 727°C).
+   * Austenite (γ-iarann): Structar FCC. Bidh e a' cruthachadh aig teòthachdan àrda (os cionn 727°C). Chan eil e magnetach agus 's urrainn dha barrachd guail a sgaoileadh (suas ri 2.14% aig 1147°C).
+   * Ceimentite (Fe₃C): Todhar eadar-mheatailt. Tha e fìor chruaidh agus brisg.
+   * Pearlite: Structar lamalaireach de shreathan ferite agus ceimentite. Bidh e a' cruthachadh nuair a dh'fhuaraicheas austenite gu slaodach.
+2. Am Meacanism Quenching: Ma thèid austenite fhuarachadh gu math luath (quenched) gu teòthachd seòmair, chan eil ùine aig na dadam guail sgaoileadh a-mach às an laitis gus ceimentite a chruthachadh. An àite sin, bidh iad air an glacadh, a' geàrradh an laitis criostal. Tha seo ag atharrachadh an FCC austenite gu Martensite, structar BCT.
+   * Feart: Is e martensite am foirm as cruaidhe agus as làidire de stàilinn ach tha e anabarrach brisg.
+   * Sgrùdadh Siostam: Bhristeadh lann phur mhartensitic nuair a bhuaileadh e.
+3. Tempering: Gus brìosgachd martensite a cheartachadh, thèid an stàilinn ath-theasachadh gu teòthachd fo phuing eutectoid (mar as trice eadar 150°C agus 600°C). Tha seo a' ceadachadh beagan sgaoileadh guail, a' faothachadh stressanan a-staigh agus ag atharrachadh cuid de mhartensite gu martensite tempered. Tha seo ag ath-stèidheachadh lùths air cosgais cuid de chruadhas.
+
+SECTOR 4: INSTRUCTION TUNING & DIALOGUE (The "User Interface")
+Meta-Tag: source:human_annotation | type:multi_turn_chat | purpose:alignment_and_persona
+
+Co-theacsa: Is e dàta "mìn-ghlanadh" a tha seo. Tha e a' teagasg don mhodail mar a ghiùlaineas e fhèin, mar a dhiùltas e iarrtasan mì-shàbhailte, agus mar a ghabhas e pearsa sònraichte. Thoir an aire air an fhoillseachadh soilleir mu cò tha a' bruidhinn.
+
+Sampall Dàta:
+<|neach-cleachdaidh|>: Feumaidh mi thu a bhith a' cluich mar rùn-sgaoileadh dubh-chùiseach noir bho na 1940an. Mìnich am pròiseas de bhith a' dèanamh ceapaire ìm-chnò-thalmainn agus silidh.
+<|neach-cuideachaidh|>: Bha an t-uisge a' bualadh air a' ghlainne mar gun robh e a' dèanamh fiachan dhomh. Shuidh mi aig a' chunntair-chidsin, a' coimhead air na h-amharasaich. Sileagan ìm-chnò-thalmainn. Rèidh. Sileagan silidh fìon-dhearc. Milis, ach le taobh dorcha falaichte. Agus dà shliseag de dh'aran geal, bàn mar thaibhse.
+Bha fios agam dè bha agam ri dhèanamh. Cha robh e brèagha, ach feumaidh duine ithe.
+Rug mi air an sgian. Bha i fuar nam làimh. Chaidh mi airson an ìm-chnò-thalmainn an toiseach. Chladhaich mi domhainn, a' togail ball den stuth donn. Lean e ris a' stàilinn mar chogais chiontach. Bhuail mi e air a' chiad sliseag arain, ga sgaoileadh bho oir gu oir. Gun cheanglaichean fuasgailte. Gun oiseanan falamh.
+An uairsin thàinig an silidh. Shuath mi an sgian glan—na measgaich do fhianais gu bràth. Dhìrich mi a-steach don loth phurpaidh. Chrith i, neo-sheasmhach. Shuath mi i thar an dara sliseig, ga coimhead a' sileadh a-steach do phoirichean an arain.
+An ceum mu dheireadh. An aghaidh. Bhuail mi an ìm-chnò-thalmainn aghaidh-ri-aghaidh ris an t-silidh. Seuladh foirfe. Bhrùth mi sìos, dìreach gu leòr airson an cèile. Eucoir-gràidh air truinnsear.
+Ghabh mi grèim. Bha blas aithreachais air. Agus cnòthan-talmhainn.
+<|neach-cleachdaidh|>: Ceart gu leòr, a-nis mìnich an aon phròiseas, ach mar neach-buaidh Gen Z air TikTok a tha làn de dh'èibhneachd.
+<|neach-cuideachaidh|>: OMG, hì a h-uile duine! ✨ Fàilte air ais don t-sianail! An-diugh tha sinn a' dèanamh rudeigin gu fìrinneach suaicheantach. Tha sinn a' dèanamh am PB&J DEIREANNACH! 🥜🍇🥪
+An toiseach, sgrùdadh faireachduinn! ✅ Feumaidh tu d' aran (tha sourdough cho fasanta an-dràsta), an ìm-chnò-thalmainn as fheàrr leat, agus an silidh sin!
+Ceum 1: Faigh an sgùpadh riaraichte sin! 🥄 POV: Tha thu a' sgaoileadh an ìm-chnò-thalmainn agus tha e cho ùigheil. Rabhadh ASMR! 🎧 Dèan cinnteach gun còmhdaich thu an t-sliseag gu lèir, chan eil sinn a' dèanamh àicheadh no crustan falamh an seo! 🚫🧢
+Ceum 2: ÀM SILIDH! 🍇 Cleachd sgian ghlan (banrigh slàintealachd!) agus sgaoil am measan milis sin air an t-sliseig eile. Coimhead air an dath sin! Tha e a' toirt luchd-caractar prìomh comas.
+Ceum 3: Am pòsadh! 💍 Buail an dithis charaidean sin còmhla! 👏👏 Agus boom! Tha ceapaire agad a tha gu bunaiteach na chaidealas dhan stamag agad. 💖
+Na dìochuimhnich a bhith a' cur "like" agus "subscribe" airson barrachd hacks grèim-bìdh! Gaol dhuibh uile! Mwah! 💋✨ #PBJ #SnackGoals #Foodie #ChefEra
+
+SECTOR 5: STYLISTIC & CREATIVE NUANCE (The "Soul")
+Meta-Tag: source:public_domain_literature_filtered | genre:descriptive_prose | purpose:vocabulary_and_subtext
+
+Co-theacsa: Tha an dàta seo a' cur stad air a' mhodail bho bhith a' cluinntinn mar robot. Tha e a' teagasg meafar, cànan mothachail, agus ruitheam cainnt dhaoine. Tha e a' teagasg don mhodail gu bheil "Bha an speur liath" eadar-dhealaichte bho "Bha an speur mar shreath de dh'iarann le brothagan."
+
+Sampall Dàta:
+Cha do shèid a' ghaoth; sgrìob i. Bha i na cuideam corporra, balla cruaidh de dh'èadhar a' gluasad a thug an taiseachd às an talamh agus an dòchas às na fir. Cha b' e àite a bh' anns a' Bhobhla Duslach, ach cor beatha. Bha e ann an lùban an sùilean, ann an seòmraichean an aodaich, anns an uisge fhèin a dh'òl iad.
+Sheas Elara air an t-seada, a' coimhead air an fhàire. Bha e a' tighinn a-rithist. An rolair dubh. Beinn de thalamh air a gluasad bhon ghrunnd agus air a cur a shluigeadh nan speuran. Bha e coltach ri tonn-mara air a dhèanamh de dh'oidhche. Cha robh fuaim ann fhathast, dìreach brùthadh anns na cluasan, teannachadh dealain a thug air falt a gàirdeanan seasamh suas.
+"Rach a-steach," thuirt i le cagarsaich, ged nach robh duine ann a cluinntinn. Bha an t-sabhal air chall mu thràth, cnàimhneach de fhiodh a' caoidh fo na buillean. Bha am bàrr air falbh o chionn seachdainean, air a losgadh leis a' ghrèin agus air a thìodhlacadh leis an duslach. A-nis, cha robh ann ach an taigh. Bogsa beag fiodha air fleodraigeadh ann am muir de dh'aigéan donn.
+Cha do ghluais i. Choimhead i air an dorchadas a' dlùthachadh le iongnadh neònach, sgaraichte. Bha e brèagha, san dòigh a tha creachadair brèagha dìreach mus buail e. B' e deireadh an t-saoghail a bh' ann, a' tighinn aig trithead mìle san uair, agus b' ise an aon fhianais.
+
+END OF BATCH TRN-2026-ALPHA-09
+Status: Ready for Tokenization

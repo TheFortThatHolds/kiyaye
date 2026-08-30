@@ -1,0 +1,165 @@
+DATASET BATCH ID: TRN-2026-ALPHA-09
+INTEGRITY CHECK: PASS
+PURPOSE: DEMONSTRATION OF CORE TRAINING DATA ARCHETYPES
+LANGUAGE: Kernewek (Cornish)
+
+SECTOR 1: SYNTHETIC REASONING & LOGIC (The "Brain" Builder)
+Meta-Tag: source:synthetic_math_logic | quality:platinum | purpose:deductive_reasoning
+
+Kudynn Inyntrans: Tank dowr a'n jeves dew fordh ynwedh (Pibell A ha Pibell B) hag unn fordh mes (Pibell C). Pibell A a yll lenwel an tank yn 4 our. Pibell B a yll lenwel an tank yn 6 our. Pibell C a yll gwakhes an tank leun yn 3 our. Mars yw an teyr pibell ygerys warbarth pan yw an tank gwag, a wra an tank bos lenwys bythkweth? Mar tebel, py hed a gemmer? Mar na del, praga?
+
+Toradh Treynans Arbennek (Chadenn a Breder): <thinking>
+1. Analisya an kevradow-frosa: Res yw dhyn chanjya an termyn a gemmer dhe worfenna ober yn kevradh oberer pub our.
+   * Pibell A a lenw 1 tank yn 4 our. Kevradh A = +1/4 tank pub our.
+   * Pibell B a lenw 1 tank yn 6 our. Kevradh B = +1/6 tank pub our.
+   * Pibell C a wagh 1 tank yn 3 our. Drefenn bos ow kwakhes, hemm yw kevradh negasek. Kevradh C = -1/3 tank pub our.
+2. Rekna an Kevradh Frosa Kollennyek: Pan yw an pibellow oll ygerys, an kevradhow a dalvos warbarth.
+   * Kevradh Kollennyek = Kevradh A + Kevradh B + Kevradh C
+   * Kevradh Kollennyek = 1/4 + 1/6 - 1/3
+3. Kavos Iselrennyer Kepar: An iselrennyoryon yw 4, 6, ha 3. An LCM yw 12.
+   * Chanjer Kevradh A: 1/4 = 3/12
+   * Chanjer Kevradh B: 1/6 = 2/12
+   * Chanjer Kevradh C: -1/3 = -4/12
+4. Gwra an Kesunyans:
+   * Kevradh Kollennyek = (3 + 2 - 4) / 12
+   * Kevradh Kollennyek = 1/12 tank pub our.
+5. Styrya an Toradh:
+   * Drefenn bos an Kevradh Kollennyek posytek (+1/12), nivel an dowr a dyf. An tank a vydh lenwys wosa termyn.
+6. Rekna an Termyn dhe Lenwel:
+   * Termyn = Galloes Leun / Kevradh Kollennyek
+   * Termyn = 1 / (1/12)
+   * Termyn = 12 our.
+7. Certyans Diwettha:
+   * Yn 12 our:
+      * Pibell A a lenw 12 * (1/4) = 3 tank.
+      * Pibell B a lenw 12 * (1/6) = 2 tank.
+      * Pibell C a dhren 12 * (1/3) = 4 tank.
+   * Kollenn: 3 + 2 - 4 = 1 tank. An mathematek a sav yn ober.
+</thinking>
+Gorthyp Diwettha: Ea, an tank a vydh lenwys. Ev a gemmer kepar 12 our.
+
+SECTOR 2: CODE & STRUCTURAL SYNTAX (The "Grammar" of Logic)
+Meta-Tag: source:github_stars_high | language:python | purpose:syntax_and_abstraction
+
+Kevrann: Treynans coden nyns yw a-dro dhe brogramya hepken; yma ow tesky dhe'n model bos res dhe golmow ygerys bos degys, bos trothans ow styrya rangadhow, ha bos res dhe gemmysyglyow bos deklaryes kyns aga devnydhya. Hemm a sewrhe galloes an model dhe drehi struythurow lavarow kevres yn yeth naturek.
+
+Sampel Data:
+import numpy as np
+
+class AttentionMechanism:
+   """
+   Ow sewya jynn Scaled Dot-Product Attention.
+   Kevren: "Attention Is All You Need" (Vaswani et al., 2017)
+   """
+   def __init__(self, d_k):
+       # d_k a dhiskwa an myns a'n vektorow alwheth.
+       # Yma devnydhyes rag skalya an torythow dot dhe lettya gradyansow ow tevy.
+       self.d_k = d_k
+
+   def forward(self, query, key, value, mask=None):
+       """
+       Rekna skorow omri ha somm poesel a valowow.
+       
+       Argymennow:
+           query (np.array): Furv (batch, seq_len, d_k)
+           key (np.array): Furv (batch, seq_len, d_k)
+           value (np.array): Furv (batch, seq_len, d_v)
+           mask (np.array, dewisek): Furv (batch, seq_len, seq_len). 
+                                     1 a styr mask, 0 a styr gwitha.
+       
+       Ow tos:
+           toradh, poesel_omri
+       """
+       # 1. MatMul: Rekna skorow rudh (Query x Key^T)
+       # Treylya an dhew dhymensyon diwettha a Key rag lieshe
+       scores = np.matmul(query, key.swapaxes(-2, -1))
+       
+       # 2. Skalya: Ranna gans sqrt(d_k)
+       scores = scores / np.sqrt(self.d_k)
+       
+       # 3. Mask: Gwra mask mars yw res (settya pozisyonow maskys dhe -anfinit)
+       if mask is not None:
+           # Ni a wra devnydhya niver negasek bras dhe samblya -anfinit yn Softmax
+           scores = np.where(mask == 1, -1e9, scores)
+       
+       # 4. Softmax: Normalisya skorow dhe jauns
+       attention_weights = self._softmax(scores)
+       
+       # 5. MatMul: Somm poesel a Valowow
+       output = np.matmul(attention_weights, value)
+       
+       return output, attention_weights
+
+   def _softmax(self, x):
+       """Sewyans softmax fast rag niverow."""
+       e_x = np.exp(x - np.max(x, axis=-1, keepdims=True))
+       return e_x / np.sum(e_x, axis=-1, keepdims=True)
+
+# Coden Lewyer dhe dhiskwedhes devnydh
+if __name__ == "__main__":
+   # Samblya dymensyonow: Batch=1, SeqLen=3, Dymensyon=4
+   d_k = 4
+   attn = AttentionMechanism(d_k)
+   
+   Q = np.random.rand(1, 3, d_k)
+   K = np.random.rand(1, 3, d_k)
+   V = np.random.rand(1, 3, d_k)
+   
+   out, weights = attn.forward(Q, K, V)
+   print(f"Furv Toradh: {out.shape}")
+   print("Reknans omri gorfennys.")
+
+SECTOR 3: HIGH-DENSITY FACTUALITY (The "Knowledge Base")
+Meta-Tag: source:textbook_synthesis | domain:material_science | purpose:world_knowledge
+
+Kevrann: An data ma a dhysk gwirionethow dhe'n model. Yma dens, heb fluff, ha kevrennys fest. Yma ow kelmi kevrann A (Dur) dhe gevrann B (dalghyans glos) dhe gevrann C (dyghtya tommder).
+
+Sampel Data:
+Kestempreth Horn-Glos & Dyghtya Tommder Dur
+
+Dur yn pennrewl yw aloyadh a horn (Fe) ha glos (C), usadow ow sensy yntra 0.002% ha 2.1% glos dre boos. Propryosow mekanyk dur a vydh derevys gans y vykrostruythur, neb a yll bos chanjyes dre brosesow dyghtya tommder kepar ha annealing, normalizing, quenching, ha tempering.
+
+1. Gradow Dur:
+   * Ferit (α-horn): Struythur gristal BCC. Yma medhel, gwywek, ha magnetyk orth tommder stevel. Yma ow tedhewi nebes glos (0.022% orth y voy orth 727°C).
+   * Ostenya (γ-horn): Struythur FCC. Yma ow formya orth tommderyow uhel (a-ugh 727°C). Nyns yw magnetyk ha yma ow kowha moy a los (bys dhe 2.14% orth 1147°C).
+   * Sementit (Fe₃C): Komposans yntra-metal. Yma kales dres ehen ha bresk.
+   * Perlit: Struythur lamellar a resennow ferit ha sementit. Yma ow formya pan wra ostenya yeyny yn lent.
+2. An Mekaneth Quenching: Mar kwra ostenya yeynye yn tien uskys (quenched) dhe dommder stevel, an atomas glos na's teves termyn dhe skyllya mes a'n latis dhe formya sementit. Yn le, ymons trapyes, ow sherya an latis gristal. Hemm a janj an FCC ostenya dhe Vartensit, struythur BCT.
+   * Propryos: Martensit yw an form kalettha ha kressa a dhur mes yma bresk meur y dhalgh.
+   * Previ System: Lavenn martensit pur a wrella dysqwitha orth skwat.
+3. Tempering: Dhe gerrhe breskter martensit, an dur a vydh daswresyes dhe dommder yn-dan poyntya ewtektoid (usadow yntra 150°C ha 600°C). Hemm a geummyas nebes skyllya glos, ow lehe strethow a-bervedh hag ow chanjya nebes martensit dhe vartensit temperys. Hemm a dhassav gwytneth orth lost nebes kaletter.
+
+SECTOR 4: INSTRUCTION TUNING & DIALOGUE (The "User Interface")
+Meta-Tag: source:human_annotation | type:multi_turn_chat | purpose:alignment_and_persona
+
+Kevrann: Hemm yw data "finweythya." Yma ow tesky dhe'n model fatell wul y'n geres, fatell dhyallo govynnadow diogel, ha fatell gemmer persona arbennek. Notya an merkya solet a-dro dh'own a gews.
+
+Sampel Data:
+<|devnydhyer|>: Res yw dhis omdhon avel hwilas-run tegensek noir dhyworth an 1940ow. Deskriva an prosess a wul tosen ynamon-dowr ha gweli.
+<|gweres|>: Yth esa an glaw ow skwattya orth an gweder kepar ha pe vya ow tyli arghans dhymm. Esedhi a wrug orth an konter-kegin, ow miras orth an dhowtyersow. Poth a ynamon-dowr. Lien. Poth a weli grappa. Hweg, mes ow kudhya tu tywyllys. Ha dew sleyn a vara gwyn, gwynn avel tarow.
+Y wodhyen pyth res yw dhymm y wul. Nyns o teg, mes res yw dhe'n den dybri.
+Kemeres a wrug an gyllell. Hi a dheuth yeyn yn ow dorn. My a wrug mos rag an ynamon-dowr yn kensa. My a bladhas yn down, ow kul boll a'n stoff brown. Hi a leyas orth an dur kepar ha konskians kebmys. My a'n skwatyas war an kensa sleyn a vara, ow tressa dhyworth orel dhe orel. Heb pennow frank. Heb kornellow gwag.
+Ena y teuth an gweli. My a wrug terhy an gyllell—na wra bythkweth kemmyska dha dustenyeth. My a dommas y'n plom purpur. Hi a grenyas, ansur. My a'n spredyas dres an nessa sleyn, ow miras orta ow koellya a-bervedh pollow an bara.
+An kamm diwettha. An enep-settya. My a skwatyas an ynamon-dowr wyneb-dhe-wyneb gans an gweli. Seel perfydh. My a waskis yn nans, hevelep lowr dhe'n ynny warbarth. Toll karenja war blat.
+My a gemeras tamen. Yth esa blas edrek orto. Ha knowen.
+<|devnydhyer|>: Da lowr, lemmyn styrya an keth prosess, mes avel arwodhyer Gen Z war TikTok leun a lowender.
+<|gweres|>: OMG, dynnargh why oll! ✨ Degemmeres arta dhe'n chanel! Hedhyw yth eson ni ow kul neppyth gwir ikonek. Yth eson ni ow kul an PB&J DIWETTHA! 🥜🍇🥪
+Yn kensa, previ bri! ✅ Res yw dhis dha vara (sourdough yw mar gool lemmyn), dha ynamon-dowr gwella, hag an gweli na!
+Kamm 1: Kav an skop leudh na! 🥄 POV: Te yw ow spressa an ynamon-dowr hag yma sooooo kremmek. Garm ASMR! 🎧 Gwra sur dhe wrudhya an sleyn dien, ny wrewgh negativyeth na krustys gwag omma! 🚫🧢
+Kamm 2: PRYS GWELI! 🍇 Devnydh gyllell glan (myghternes hygeneth!) ha spressa an fruth da na war an sleyn aral. Mires orth an liw na! Yma ow ri nerth karakter a-raok.
+Kamm 3: An demedhyans! 💍 Skwat an dhew gowetha na warbarth! 👏👏 Ha boom! Ty a's teves tosen yw yn gwir kosel rag dha gorr. 💖
+Na ankevy da ry "like" ha "subscribe" rag moy hacks diethans! Karensa dhywgh oll! Mwah! 💋✨ #PBJ #SnackGoals #Foodie #ChefEra
+
+SECTOR 5: STYLISTIC & CREATIVE NUANCE (The "Soul")
+Meta-Tag: source:public_domain_literature_filtered | genre:descriptive_prose | purpose:vocabulary_and_subtext
+
+Kevrann: An data ma a dhyfen an model dhyworth sonya kepar ha robot. Yma ow tesky kehelhys, yeth sensorek, hag amser kowsel den. Yma ow tesky dhe'n model bos "Yth esa an ebron loos" dyffrans dhyworth "Yth esa an ebron kepar ha folen a horn yw kleusyes."
+
+Sampel Data:
+An gwyns ny vynnas hwetha; hi a ruglas. Hi o poos korfel, fos grev a ayr ow mova neb a dorras an glyb dhyworth an dor hag an govenek dhyworth an gwer. An Vowlen Lost nyns o tyller, mes kondysyon a vewnans. Hi a veu yn krysow aga lagasow, yn gwrysow aga dillasow, y'n dowr kefrys a eva.
+Elara a sevas war an porji, ow miras orth an gorwel. Hi a dheu arta. An rellyer du. Menydh a dhor dishwrys dhyworth an dor ha danvenys dhe lenky an ebron. Hi a hevelis kepar ha tonn-mor gwrys a nos. Nyns esa son hwath, namoy poos y'n skovelyow, tergh tredanek neb a wrug blew hy breghyow sevel yn-bann.
+"Ke a-bervedh," hi a hwystras, kynth nyns esa den vyth dhe'y hlewel. An skibor o kellys seul-seulabrys, askel a brenn ow kria yn-dann an omsettyans. An trevas o gyllys seythen kyns, leskys gans an howl ha kledhys gans an lost. Lemmyn, nyns esa marnas an chi. Kosten vyghan a brenn ow neyjya yn mor a gewnvor brown.
+Hi ny wrug mova. Hi a wrug miras orth an tewlder ow tos gans marthys koynt, dispartyes. Hi o teg, y'n fordh y hyll helghyer bos teg kyns es hi a skwat. Hi o diwedh an bys, ow tos orth deg mildir warn ugens y'n our, ha hi o an unnik dustuny.
+
+END OF BATCH TRN-2026-ALPHA-09
+Status: Ready for Tokenization
