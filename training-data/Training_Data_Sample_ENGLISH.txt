@@ -1,5 +1,16 @@
-﻿DATASET BATCH ID: TRN-2026-ALPHA-09
-INTEGRITY CHECK: PASS
+==============================================================================
+  UNVERIFIED — SYNTHETIC SAMPLE CONTENT.
+
+  This is the English BASE TEMPLATE the other samples were generated from. It
+  is machine-generated demonstration material, not fact-checked reference text.
+  The technical and factual claims in it have not been verified either.
+
+  It exists to show the five-sector corpus structure. Nothing more.
+==============================================================================
+
+DATASET BATCH ID: TRN-2026-ALPHA-09
+FORMAT INTEGRITY CHECK: PASS  (file structure only — NOT a language check)
+LINGUISTIC VERIFICATION: NONE  (see banner above)
 PURPOSE: DEMONSTRATION OF CORE TRAINING DATA ARCHETYPES
 SECTOR 1: SYNTHETIC REASONING & LOGIC (The "Brain" Builder)
 Meta-Tag: source:synthetic_math_logic | quality:platinum | purpose:deductive_reasoning
