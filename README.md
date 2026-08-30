@@ -75,9 +75,14 @@ Enables:
 
 ## License
 
-**CC BY-SA 4.0**
+**CC0 1.0 Universal — public domain dedication**
 
-Use it. Modify it. No attribution required.
+Use it. Modify it. Sell it. No attribution required, no share-alike, no
+permission needed. Strip our names off it if you like.
+
+The waiver covers *our* copyright only — it does not override any language
+community's authority over its own materials. See
+[Governance](standards/ULAS_Unity_Covenant_Governance_Integration.md).
 
 ---
 
